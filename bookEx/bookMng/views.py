@@ -4,7 +4,7 @@ from django.shortcuts import render
 # Create your views here.
 
 from .models import MainMenu
-from .forms import BookForm
+from .forms import BookForm, BookSearchForm
 
 from .models import Book
 
@@ -105,3 +105,21 @@ def mybooks(request):
                       'books': books
                   })
 
+
+
+
+def search_books(request):
+    form = BookSearchForm(request.GET or None)
+    results = Book.objects.all()
+
+    if form.is_valid() and form.cleaned_data['query']:
+        query = form.cleaned_data['query']
+        results = results.filter(name__icontains=query)
+
+    return render(request,
+    'bookMng/search_results.html',
+    {
+        'item_list': MainMenu.objects.all(),
+        'form': form,
+        'results': results
+    })
