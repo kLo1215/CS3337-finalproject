@@ -123,3 +123,10 @@ def search_books(request):
         'form': form,
         'results': results
     })
+
+def about_us(request):
+    return render(request,
+                  'aboutUs/about_us.html',
+                  {
+                      'item_list': MainMenu.objects.all()
+                  })
