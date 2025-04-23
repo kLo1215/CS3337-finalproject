@@ -22,4 +22,10 @@ class Book(models.Model):
     username = models.ForeignKey(User, blank=True, null=True, on_delete=models.CASCADE)
 
 
+class Rating(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='ratings')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    is_positive = models.BooleanField()
 
+    class Meta:
+        unique_together = ('book', 'user')
