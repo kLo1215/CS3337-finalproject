@@ -53,4 +53,16 @@
            </td>
       </tr>
    </table>
+
+{% if user.is_authenticated %}
+  <a href="{% url 'rate_book' book.id 'true' %}">👍</a>
+  <a href="{% url 'rate_book' book.id 'false' %}">👎</a>
+{% endif %}
+
+{% if total_ratings > 0 %}
+    <p>{{ positive_ratings }} of {{ total_ratings }} users liked this book ({{ percentage|floatformat:0 }}%)</p>
+{% else %}
+    <p>No ratings yet.</p>
+{% endif %}
+
 {% endblock content %}
