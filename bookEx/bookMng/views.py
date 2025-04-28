@@ -1,18 +1,21 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-
+from django.shortcuts import get_object_or_404, redirect
+from .models import Book, Rating
 # Create your views here.
 
 from .models import MainMenu
 from .forms import BookForm, BookSearchForm
 
 from .models import Book
+from .models import Rating
 
 from django.http import HttpResponseRedirect
 
 
 from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 
 
@@ -63,14 +66,28 @@ def displaybooks(request):
 
 
 def book_detail(request, book_id):
-    book = Book.objects.get(id=book_id)
+    book = get_object_or_404(Book, id=book_id) #small changes here for ratings
 
     book.pic_path = book.picture.url[14:]
+
+    #rate
+    total_ratings = book.ratings.count()  # Total ratings for the book
+    positive_ratings = book.ratings.filter(is_positive=True).count()
+
+    # Calculate percentage here
+    if total_ratings > 0:
+        percentage = (positive_ratings / total_ratings) * 100
+    else:
+        percentage = 0  # If no ratings, set percentage to 0
+        
     return render(request,
                   'bookMng/book_detail.html',
                   {
                       'item_list': MainMenu.objects.all(),
                       'book': book
+                      'total_ratings': total_ratings,
+                      'positive_ratings': positive_ratings,
+                      'percentage': percentage
                   })
 
 def book_delete(request, book_id):
@@ -82,6 +99,19 @@ def book_delete(request, book_id):
                   {
                       'item_list': MainMenu.objects.all(),
                   })
+    
+def rate_book(request, book_id, is_positive):
+    book = get_object_or_404(Book, id=book_id)
+
+    if request.user.is_authenticated:
+        is_positive_bool = True if is_positive.lower() == 'true' else False  # ensure it's a real bool
+        Rating.objects.update_or_create(
+            user=request.user,
+            book=book,
+            defaults={'is_positive': is_positive_bool}
+        )
+
+    return redirect('book_detail', book_id=book.id)
 
 
 class Register(CreateView):
