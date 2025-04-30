@@ -6,7 +6,8 @@ from .models import Book, Rating
 
 from .models import MainMenu
 from .forms import BookForm, BookSearchForm
-
+from .models import Cart, CartItem
+from django.contrib.auth.decorators import login_required
 from .models import Book
 from .models import Rating
 
@@ -84,7 +85,7 @@ def book_detail(request, book_id):
                   'bookMng/book_detail.html',
                   {
                       'item_list': MainMenu.objects.all(),
-                      'book': book
+                      'book': book,
                       'total_ratings': total_ratings,
                       'positive_ratings': positive_ratings,
                       'percentage': percentage
@@ -160,3 +161,62 @@ def about_us(request):
                   {
                       'item_list': MainMenu.objects.all()
                   })
+
+@login_required
+def add_to_cart(request, book_id):
+    book = get_object_or_404(Book, id=book_id)
+    cart, created = Cart.objects.get_or_create(user=request.user)
+    item, created = CartItem.objects.get_or_create(cart=cart, book=book)
+    if not created:
+        item.quantity += 1
+        item.save()
+    return redirect('view_cart')
+
+
+@login_required
+def view_cart(request):
+    cart, _ = Cart.objects.get_or_create(user=request.user)
+    return render(request, 'bookMng/cart.html', {
+        'item_list': MainMenu.objects.all(),
+        'cart': cart
+    })
+
+
+@login_required
+def remove_from_cart(request, book_id):
+    cart = get_object_or_404(Cart, user=request.user)
+    CartItem.objects.filter(cart=cart, book_id=book_id).delete()
+    return redirect('view_cart')
+
+@login_required
+def view_cart(request):
+    cart, _ = Cart.objects.get_or_create(user=request.user)
+
+    cart_items = []
+    cart_total = 0
+
+    for item in cart.items.all():
+        total_price = item.book.price * item.quantity
+        cart_items.append({
+            'book': item.book,
+            'quantity': item.quantity,
+            'total_price': total_price,
+        })
+        cart_total += total_price
+
+    return render(request, 'bookMng/cart.html', {
+        'item_list': MainMenu.objects.all(),
+        'cart_items': cart_items,
+        'cart_total': cart_total,
+    })
+
+@login_required
+def checkout(request):
+    cart = get_object_or_404(Cart, user=request.user)
+
+    # Clear cart items after "payment"
+    cart.items.all().delete()
+
+    return render(request, 'bookMng/checkout.html', {
+        'item_list': MainMenu.objects.all(),
+    })
