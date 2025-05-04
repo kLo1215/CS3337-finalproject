@@ -98,7 +98,9 @@ def book_detail(request, book_id):
                       'book': book,
                       'total_ratings': total_ratings,
                       'positive_ratings': positive_ratings,
-                      'percentage': percentage
+                      'percentage': percentage,
+                      'comment_form': comment_form,
+                      'comments': comments
                   })
 
 def book_delete(request, book_id):
