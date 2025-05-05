@@ -1,0 +1,174 @@
+main{
+    margin: 0px;
+    padding: 0px;
+    display: unset;
+}
+
+.hero{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .image-div{
+        position: relative;
+        width: 100%;
+        height: 600px;
+        overflow: hidden;
+        opacity: 75%;
+        transform: scale(1.01);
+        filter: blur(5px);
+
+        .hero-image{
+            z-index: 1;
+            position: absolute;
+            display: block;
+            max-width: 100%;
+            clip-path: polygon(0% 0%, 100% 0%, 100% 40%, 20% 50%, 0% 70%);
+        }
+    }
+
+    .hero-content{
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 5;
+
+        .hero-text{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            filter: drop-shadow(3px 3px 5px var(--accent));
+
+            text{
+                color: var(--secondary);
+            }
+            text.head{
+                font: var(--head);
+                line-height: 2;
+            }
+            text.sub{
+                font: var(--subhead);
+            }
+            text.plain{
+                font: var(--plaintext);
+                line-height: 1;
+            }
+        }
+
+        .searchbar{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            form{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+            .input-div{
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                width: 100%;
+
+                input[type="text"] {
+                    background-color: rgba(205, 208, 221, 0.7);
+                    box-sizing: content-box;
+                    padding: 15px;
+                    height: 25px;
+                    width: 650px;
+                    border-radius: 15px;
+                    border-color: transparent;
+                    outline: none;
+                    border-color: transparent;
+
+                    &::placeholder{
+                        font: var(--subsubhead);
+                    }
+                    &:focus{
+                        outline-style: none;
+                    }
+                }
+
+                .search-button{
+                    cursor: pointer;
+                    height: 58px;
+                    width: 58px;
+                    position: absolute;
+                    background-color: var(--primary);
+                    right: 0px;
+                    border-radius: 0px 15px 15px 0px;
+                    border-color: transparent;
+                }
+                .search-icon{
+                    padding: 5px;
+                    height: 40px;
+                }
+            }
+        }
+    }
+}
+
+.home-wrapper{
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    right: 0;
+    margin: 100px 50px 100px 50px;
+
+    .homesections{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 75px 0px;
+
+        .section1{
+            align-self: flex-start;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+
+            padding: 25px;
+            width: 90%;
+            gap: 35px;
+
+            border-radius: 10px;
+    }
+
+        }
+        .section2{
+            align-self: flex-end;
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: flex-start;
+            padding: 25px;
+            width: 90%;
+            gap: 35px;
+
+            border-radius: 10px;
+        }
+    }
+    .section-image{
+        img{
+            height: 300px;
+            border-radius: 25px;
+        }
+        img.right{
+            filter: drop-shadow(10px 10px 10px var(--primary));
+        }
+        img.left{
+            filter: drop-shadow(-10px 10px 10px var(--primary));
+        }
+    }
+    .section-text{
+
+        text.head{
+            line-height: 3;
+        }
+    }
+    .section-buttons{}

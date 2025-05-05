@@ -1,18 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block sidenav %}
-   {% for item in item_list %}
-      <li>
-        <a href="{{ item.link }}">  {{ item.item }} </a>
-      </li>
-   {% endfor %}
-{% endblock sidenav %}
+{% block general-css %}
+    <link rel="stylesheet" href="{% static 'styles/general.css' %}" type="text/css">
+{% endblock general-css %}
 
 {% block content %}
-  <h1>Post Book</h1>
+<div class="postBook">
+    <h1>Post Book</h1>
   {% if submitted %}
-      <h1> Post Book Successfully! </h1>
+      <h1>Book Posted Successfully! </h1>
   {% else %}
     <form action="" enctype="multipart/form-data" method="post" novalidate>
       <table>
@@ -26,4 +23,5 @@
       {% csrf_token %}
      </form>
   {% endif %}
+</div>
 {% endblock content %}

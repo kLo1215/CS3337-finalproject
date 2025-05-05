@@ -1,0 +1,200 @@
+/* General Reset */
+:root{ /* variables for colors and other properties */
+    --text: #000000;
+    --background: #FEEBD7;
+    --primary: #63A375;
+    --secondary: #CDD0DD;
+    --accent: #3A0405;
+    --head: 2.2rem "Georgia", serif;
+    --subhead: 1.8rem "Helvetica", sans-serif;
+    --subsubhead: 1rem "Times New Roman", sans-serif;
+    --plaintext: .8rem "Arial", sans-serif;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* makes html/body container take up entire screen (no more floating) */
+
+    /* scrolling behavior */
+    scrollbar-width: none; /* scrollbar not visible */
+    overscroll-behavior: none; /* no rubberbanding on overscroll */
+
+    /* styling */
+    background-color: var(--background);
+
+}
+* { /* universal selector */
+    box-sizing: border-box; /* container sizing includes padding/border */
+}
+
+
+/* base content (header and footer) */
+.header{
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 8px 75px;
+    background-color: var(--secondary);
+    position: sticky;
+    filter: drop-shadow(0px 5px 30px var(--accent));
+    z-index: 10;
+
+    .logo{
+        justify-self: start;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .icon{
+            height: 50px;
+        }
+        .title{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            text{
+                font: var(--subsubhead);
+            }
+        }
+    }
+    .navigation {
+        justify-self: center;
+        display: inline-block;
+
+        & > a {
+            color: var(--text);
+            text-decoration: none;
+            position: relative;
+            font: var(--subsubhead);
+
+            & + a { /* every link preceded by another link has a left margin */
+                margin-left: 30px;
+            }
+            &::after {
+                content: "";
+                position: absolute;
+                left: 0%;
+                right: 0%;
+                bottom: -15%;
+                border: 1px solid var(--accent);
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 0.3s ease;
+            }
+            &:hover::after {
+                transform: scaleX(1);
+            }
+        }
+    }
+    .login{
+        justify-self: end;
+        display: inline-block;
+        align-items: center;
+
+        a {
+            text-decoration: none;
+            color: var(--text);
+        }
+        form{
+            margin: 0px;
+        }
+
+        .icon{
+            height: 25px;
+        }
+        .login-button{
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            gap: 8px;
+            font: var(--subsubhead);
+            border: 1px solid black;
+            border-radius: 25px;
+            background-color: transparent;
+        }
+        .logout-button{
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            gap: 8px;
+            font: var(--subsubhead);
+            border: 1px solid black;
+            border-radius: 25px;
+            background-color: transparent;
+        }
+    }
+}
+
+.page-wrapper{
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+}
+
+.footer{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: var(--secondary);
+    padding: 10px 75px;
+    filter: drop-shadow(0px -5px 30px var(--accent));
+
+    /* utility */
+    a{
+        font: var(--plaintext);
+        text-decoration: none;
+        color: var(--text);
+        margin: 5px 0px;
+    }
+
+    /* content divs, ensures links are not centered vertically */
+    .signature{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 8px;
+
+        .name{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        img{
+            height: 75px;
+        }
+        text{
+            font: var(--subsubhead);
+            font-size: 1.3rem;
+        }
+    }
+
+    .foothead{
+        text{
+            font: var(--subsubhead);
+            font-size: 1.1rem;
+            line-height: 2;
+            border-bottom: 1px solid var(--accent);
+        }
+        .links{
+            display: grid;
+            grid-template-columns: repeat(2, auto);
+            align-items: start;
+            gap: 0px 35px;
+            width: max-content;
+
+            a{
+                display: inline-block;
+                width: auto;
+                text-decoration: none;
+            }
+        }
+    }
+}

@@ -1,56 +1,82 @@
 {% load static %}
 
-
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Exchange System</title>
-    <link rel="stylesheet" href="{% static 'base.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'styles/base.css' %}" type="text/css">
+
+    <!---extra css for other pages--->
+    {% block landing-css %}{% endblock landing-css %}
+    {% block general-css %}{% endblock general-css %}
 </head>
 <body>
-    <header>
-
-        <span style="float: right;">
-            {% if user.is_authenticated %}
-               {{ user.username}}
-               <form action="{% url 'logout' %}?next=/" method="post">
-                   <button type="submit">logout</button>
-                   {% csrf_token %}
-               </form>
-            {% else %}
-               Not Logged in
-               <a href="{% url 'login' %}?next=/">login</a>
-            {% endif %}
-        </span>
-
-        <div class="banner">
-            <img src="{% static 'banner.jpg' %}" height="120"/>
+    <div class="page-wrapper">
+        <div class="header">
+            <div class="logo">
+                <img class="icon" src="https://cdn-icons-png.flaticon.com/512/5832/5832416.png">
+                <div class="title">
+                    <text>Book</text>
+                    <text>Exchange</text>
+                    <text>System</text>
+                </div>
+            </div>
+            <div class="navigation">
+                <a href="{% url 'index' %}">Home</a>
+                <a href="{% url 'mybooks' %}">My Books</a>
+                <a href="{% url 'displaybooks' %}">Browse</a>
+                <a href="{% url 'search_books' %}">Search</a>
+                <a href="{% url 'postbook' %}">Post a Book</a>
+            </div>
+            <div class="login">
+                {% if user.is_authenticated %}
+                    <form action="{% url 'logout' %}?next=/" method="post">
+                        <button class="logout-button">
+                        Logout
+                        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828427.png" class="icon"></button>
+                        {% csrf_token %}
+                    </form>
+                {% else %}
+                        <a href="{% url 'login' %}?next=/" class="login-button">
+                        Login
+                        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828391.png" class="icon"></a>
+                {% endif %}
+            </div>
         </div>
-    </header>
 
-    <div class="container">
-        <nav class="sidebar">
-            <ul>
-                {% block sidenav %}
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                {% endblock sidenav %}
-            </ul>
-        </nav>
-
-        <main class="content">
-            {% block content %}
-               <h1>Main Content</h1>
-            {% endblock content %}
+        <main>
+            {% block content %}{% endblock content %}
         </main>
-    </div>
 
-    <footer>
-        <p>&copy; 2025 My Web Layout</p>
-    </footer>
+        <div class="footer">
+            <div class="signature">
+                <img src="https://cdn-icons-png.flaticon.com/512/5832/5832416.png">
+                <div class="name">
+                    <text>Book</text>
+                    <text>Exchange</text>
+                    <text>System</text>
+                </div>
+            </div>
+            <div class="foothead">
+                <text>Information</text>
+                <div class="links">
+                    <a href="{% url 'about_us' %}">About Us</a>
+                    <a href="{% url 'login' %}">Login</a>
+                    <a href="{% url 'register' %}">Join Our Community</a>
+                    <a href="{% url 'view_cart' %}">View Your Cart</a>
+                </div>
+            </div>
+            <div class="foothead">
+                <text>Navigation</text>
+                <div class="links">
+                    <a href="{% url 'index' %}">Home</a>
+                    <a href="{% url 'displaybooks' %}">Browse</a>
+                    <a href="{% url 'search_books' %}">Search</a>
+                    <a href="{% url 'postbook' %}">Post A Book</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

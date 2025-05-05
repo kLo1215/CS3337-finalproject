@@ -33,7 +33,6 @@ def postbook(request):
     if request.method == 'POST':
         form = BookForm(request.POST, request.FILES)
         if form.is_valid():
-            #form.save()
             book = form.save(commit=False)
             try:
                 book.username = request.user
@@ -100,7 +99,7 @@ def book_delete(request, book_id):
                   {
                       'item_list': MainMenu.objects.all(),
                   })
-    
+
 def rate_book(request, book_id, is_positive):
     book = get_object_or_404(Book, id=book_id)
 
@@ -124,7 +123,7 @@ class Register(CreateView):
         form.save()
         return HttpResponseRedirect(self.success_url)
 
-
+@login_required(login_url='/login')
 def mybooks(request):
     books = Book.objects.filter(username=request.user)
     for b in books:
@@ -135,9 +134,6 @@ def mybooks(request):
                       'item_list': MainMenu.objects.all(),
                       'books': books
                   })
-
-
-
 
 def search_books(request):
     form = BookSearchForm(request.GET or None)
@@ -188,7 +184,7 @@ def remove_from_cart(request, book_id):
     CartItem.objects.filter(cart=cart, book_id=book_id).delete()
     return redirect('view_cart')
 
-@login_required
+@login_required(login_url='/login')
 def view_cart(request):
     cart, _ = Cart.objects.get_or_create(user=request.user)
 
@@ -209,8 +205,7 @@ def view_cart(request):
         'cart_items': cart_items,
         'cart_total': cart_total,
     })
-
-@login_required
+@login_required(login_url='/login')
 def checkout(request):
     cart = get_object_or_404(Cart, user=request.user)
 

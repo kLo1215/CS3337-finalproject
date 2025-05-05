@@ -1,14 +1,61 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block sidenav %}
-   {% for item in item_list %}
-      <li>
-        <a href="{{ item.link }}">  {{ item.item }} </a>
-      </li>
-   {% endfor %}
-{% endblock sidenav %}
+{% block landing-css %}
+   <link rel="stylesheet" href="{% static 'styles/landing.css' %}" type="text/css">
+{% endblock landing-css %}
 
 {% block content %}
-   <h1>Welcome to Book Exchange System</h1>
+<div class="hero">
+   <div class="image-div">
+      <img class="hero-image" src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=1828&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+   </div>
+   <div class="hero-content">
+      <div class="hero-text">
+         <text class="head">Welcome to the Book Exchange System!</text>
+         <text class="sub">We're goated lowkey!</text>
+      </div>
+      <div class="searchbar">
+         <form action="{% url 'search_books' %}" method="get">
+            <div class="input-div">
+               <label id="query">
+               <input type="text" name="query" placeholder="Search our collection..."/></label>
+               <button class="search-button">
+                  <img class="search-icon" src="https://cdn-icons-png.flaticon.com/512/711/711319.png"/>
+               </button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<div class="home-wrapper">
+   <div class="homesections">
+      <div class="section1">
+         <div class="section-image">
+            <img class="left" src="https://images.unsplash.com/photo-1517673132405-a56a62b18caf?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+         </div>
+         <div class="section-text">
+
+         </div>
+         <div class="section-buttons">
+            <button>Post A Book</button>
+            <button>Hit the Nae Nae</button>
+            <button>Something Something!</button>
+            <button>Pluh?</button>
+         </div>
+      </div>
+      <div class="section2">
+         <div class="section-image">
+            <img class="right" src="https://images.unsplash.com/photo-1523273448803-25ba19c5faa1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+         </div>
+         <div class="section-text"></div>
+         <div class="section-buttons">
+            <button>Post A Book</button>
+            <button>Hit the Nae Nae</button>
+            <button>Something Something!</button>
+            <button>Pluh?</button>
+         </div>
+      </div>
+   </div>
+</div>
 {% endblock content %}

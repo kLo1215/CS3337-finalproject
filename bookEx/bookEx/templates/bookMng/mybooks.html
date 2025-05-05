@@ -1,46 +1,34 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block sidenav %}
-   {% for item in item_list %}
-      <li>
-        <a href="{{ item.link }}">  {{ item.item }} </a>
-      </li>
-   {% endfor %}
-{% endblock sidenav %}
+{% block general-css%}
+    <link rel="stylesheet" href="{% static 'styles/general.css' %}" type="text/css">
+{% endblock general-css %}
 
 {% block content %}
-   <h1>My Books</h1>
-   <table border="2" >
-      <tr>
-          <th>
-              Book Name
-          </th>
-          <th>
-              Book Price
-          </th>
-          <th>
-              User Name
-          </th>
-          <th>
-              DELETE
-          </th>
-      </tr>
-   {% for book in books %}
-       <tr>
-         <td>
-        <a href="book_detail/{{ book.id }}">  {{ book.name }} </a>
-         </td>
-         <td>
-            {{ book.price }}
-         </td>
-          <td>
-            {{ book.username }}
-         </td>
-           <td>
-            <a href="book_delete/{{ book.id }}">  DELETE </a>
-         </td>
-      </tr>
-   {% endfor %}
-   </table>
+    <div class="userBook">
+        <div class="section-text">
+            <text class="head">{{ user.username }}'s Books!</text>
+
+            {% if books|length > 0 %}
+                <text class="plaintext">You've shared {{ books|length }} book(s) with our community!
+                    To share more, click <a href="postbook">here.</a></text>
+            {% else %}
+                <text class="plaintext">You haven't shared any books!
+                                        To post a book, click <a href="postbook">here.</a></text>
+            {% endif %}
+        </div>
+        <div class="selection">
+            {% for book in books %}
+                <div class="book">
+                    <div class="book-info">
+                        <text>{{ book.name }}</text>
+                        <text>Price: ${{ book.price }}</text>
+                        <a class="delete-button" href="book_delete/{{book.id}}">Delete Book</a>
+                    </div>
+                    <a href="{% url 'book_detail' book.id %}"><img class="covers" src="{% static book.picture.name|cut:'bookEx/static/' %}"></a>
+                </div>
+            {% endfor%}
+        </div>
+    </div>
 {% endblock content %}

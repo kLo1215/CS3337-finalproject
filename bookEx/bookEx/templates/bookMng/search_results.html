@@ -1,28 +1,41 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block sidenav %}
-   {% for item in item_list %}
-      <li>
-        <a href="{{ item.link }}">  {{ item.item }} </a>
-      </li>
-   {% endfor %}
-{% endblock sidenav %}
+{% block general-css %}
+    <link rel="stylesheet" href="{% static 'styles/general.css' %}" type="text/css">
+{% endblock general-css %}
 
 {% block content %}
-   <h2>Search Books</h2>
-<form method="get">
-    {{ form.as_p }}
-    <button type="submit">Search</button>
-</form>
+    <div class="searching">
+        <!---div for search bar && results count--->
+        <div class="searchbar">
+            <text class="subtext">Don't have anything in mind? Browse our collection
+                <a href="{% url 'displaybooks' %}">here!</a>
+            </text>
+            <form method="get">
+                <div class="search-div">
+                    <label id="query">
+                    <input type="text" name="query" placeholder="Search our collection..."/></label>
+                    <button class="search-button" type="submit">
+                      <img class="search-icon" src="https://cdn-icons-png.flaticon.com/512/711/711319.png"/>
+                   </button>
+                </div>
+            </form>
+             {% if results %}
+             <text class="count">Found {{ results|length }} result(s):</text>
+        </div>
 
-{% if results %}
-    <ul>
-        {% for book in results %}
-            <li><a href="{% url 'book_detail' book.id %}">{{ book.name }}</a></li>
-        {% endfor %}
-    </ul>
-{% elif form.is_bound %}
-    <p>No results found.</p>
-{% endif %}
+        <!---div for results--->
+        <div class="results">
+                {% for book in results %}
+                    <div class="book">
+                        <text>{{ book.name }}</text>
+                        <a href="{% url 'book_detail' book.id %}"><img class="covers" src="{% static book.picture.name|cut:'bookEx/static/' %}"></a>
+                    </div>
+                {% endfor %}
+            {% elif form.is_bound %}
+                <text class="count">No results found.</text>
+            {% endif %}
+        </div>
+    </div>
 {% endblock content %}
