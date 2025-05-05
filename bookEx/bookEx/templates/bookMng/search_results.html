@@ -17,11 +17,18 @@
 </form>
 
 {% if results %}
-    <ul>
+<!--    <ul>-->
+<!--        {% for book in results %}-->
+<!--            <li><a href="{% url 'book_detail' book.id %}">{{ book.name }}</a></li>-->
+<!--        {% endfor %}-->
+<!--    </ul>-->
+<div class="container mt-4">
+    <div class="row">
         {% for book in results %}
-            <li><a href="{% url 'book_detail' book.id %}">{{ book.name }}</a></li>
+            {% include "bookMng/book_item.html" with book=book %}
         {% endfor %}
-    </ul>
+    </div>
+</div>
 {% elif form.is_bound %}
     <p>No results found.</p>
 {% endif %}
