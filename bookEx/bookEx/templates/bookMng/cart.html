@@ -19,9 +19,10 @@
       <div class="cartbooks">
         <img src="{% static item.book.picture.url|cut:'bookEx/static' %}"/>
         <div class="iteminfo">
-          <text >Book Title: {{ item.book.name }}</text>
+          <text class="itemtitle">{{ item.book.name }}</text>
           <text>Item Price: ${{ item.book.price|floatformat:2 }}</text>
           <text>Quantity: {{ item.quantity }}</text>
+          <text>Total: ${{ item.total_price|floatformat:2 }}</text>
         </div>
       </div>
         {% endfor %}
@@ -30,12 +31,15 @@
   {% if not cart_items %}
   <text>Your cart is empty, <a href="{% url 'displaybooks' %}">start shopping!</a></text>
   {% else %}
-  <text><a href="{% url 'displaybooks' %}">← Continue Shopping</a></text>
+  <a href="{% url 'displaybooks' %}">
+    <img src="https://cdn-icons-png.flaticon.com/512/130/130882.png">
+    Continue Shopping
+  </a>
   {% endif %}
     </div>
     <div class="cart-total">
-      <text>Grand Total: ${{ cart_total|floatformat:2 }}</text>
-
+      <text class="totalheader">Order Summary</text>
+      <text>Subtotal: ${{ cart_total|floatformat:2 }}</text>
       <form action="{% url 'checkout' %}" method="post" style="margin-top: 20px;">
       {% csrf_token %}
       <button type="submit">Checkout</button>

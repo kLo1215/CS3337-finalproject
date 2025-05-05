@@ -42,18 +42,18 @@
     <div class="commentsection">
         <div class="submitcomment">
             {% if user.is_authenticated %}
-            <text>Add a Comment:</text>
             <form method="post">
                 {% csrf_token %}
                 {{ comment_form.content }}
-            <button type="submit">Submit Comment</button>
+            <button class="entercomment" type="submit"><img src="https://cdn-icons-png.flaticon.com/512/9256/9256383.png"></button>
             </form>
+            <text>See what others are saying about this book:</text>
             {% else %}
-            <p><a href="{% url 'login' %}?next={{ request.path }}">Log in</a> to add a comment.</p>
+            <a href="{% url 'login' %}?next={{ request.path }}">Log in</a> to add a comment.
             {% endif %}
         </div>
         <div class="bookcomments">
-            <text>See what others are saying about this book:</text>
+
             {% if comments %}
                 {% for comment in comments %}
                    <div class="comment">
@@ -62,7 +62,7 @@
                    </div>
                 {% endfor %}
             {% else %}
-            <p>No comments yet. Be the first to comment!</p>
+            <text class="commenttext">No comments yet. Be the first to comment!</text>
             {% endif %}
         </div>
     </div>

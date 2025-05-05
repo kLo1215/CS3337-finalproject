@@ -21,12 +21,12 @@
         <div class="selection">
             {% for book in books %}
                 <div class="book">
+                    <a href="{% url 'book_detail' book.id %}"><img class="covers" src="{% static book.picture.name|cut:'bookEx/static/' %}"></a>
                     <div class="book-info">
-                        <text>{{ book.name }}</text>
-                        <text>Price: ${{ book.price }}</text>
+                        <text class="name">{{ book.name }}</text>
+                        <text class="price">Price: ${{ book.price }}</text>
                         <a class="delete-button" href="book_delete/{{book.id}}">Delete Book</a>
                     </div>
-                    <a href="{% url 'book_detail' book.id %}"><img class="covers" src="{% static book.picture.name|cut:'bookEx/static/' %}"></a>
                 </div>
             {% endfor%}
         </div>

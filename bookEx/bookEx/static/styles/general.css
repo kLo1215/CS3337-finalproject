@@ -1,15 +1,25 @@
 .userlogin{
     flex: 1;
-    padding: 50px;
+    padding: 100px 75px;
     width: 100%;
 }
-.register{}
+.register{
+    flex: 1;
+    padding: 100 75px;
+}
 .postBook{
     flex: 1;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
     margin: 0px 0px;
     padding: 75px 50px;
+}
+.aboutus{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 100px 75px;
 }
 
 /* ^fuckass forms */
@@ -109,6 +119,20 @@
                 padding: 15px 0px;
                 border-bottom: 2px solid var(--accent);
 
+                text{
+                    margin-top: 25px;
+                }
+                img{
+                    height: 25px;
+                }
+
+                button{
+                    cursor: pointer;
+                    background-color: var(--primary);
+                    border-radius: 15px;
+                    padding: 15px;
+                }
+
                 textarea{
                     resize: none;
                     border-radius: 15px;
@@ -120,6 +144,11 @@
                 flex-direction: column;
                 padding: 10px 15px;
 
+                text{
+                    font: var(--plaintext);
+                    font-size: 1.2rem;
+                    line-height: 2;
+                }
                 .comment{
                     display: flex;
                     flex-direction: column;                        border-color: var(--accent);
@@ -307,12 +336,13 @@
 }
 .userBook{
     flex: 1;
-    padding: 50px;
-    width: 100%;
+    padding: 100px 75px;
 
     .section-text{
         display: flex;
         flex-direction: column;
+        border-bottom: 2px solid var(--accent);
+        padding-bottom: 25px;
 
         text.head{
             font: var(--head);
@@ -321,7 +351,7 @@
 
     .selection {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         justify-items: start;
         align-items: start;
         gap: 10px 50px;
@@ -329,38 +359,49 @@
 
         .book{
             display: flex;
-            flex-direction: row-reverse;
-            box-sizing: border-box;
+            flex-direction: row;
+            align-items: flex-start;
             padding: 10px;
             height: auto;
             width: 100%;
-            gap: 15px;
+            gap: 0px 15px;
 
-            .covers{
+            img{
                 align-items: center;
-                max-width: 150px;
+                width: 100px;
+                height: 150px;
+                flex-shrink: 0;
             }
             .book-info{
+                align-self: stretch;
+                flex: 1;
                 display: flex;
                 flex-direction: column;
-                position: relative;
-                padding: 15px;
+                padding: 0px 0px;
 
-                text{
-                    font: var(--subsubhead);
-                    font-size: 1.2rem;
+                text.price{
+                    margin-top: 10px;
+                    font: var(--plaintext);
+                }
+
+                text.name{
+                    text-align: center;
+                    font: var(--subhead);
+                    text-wrap: balance;
+                    font-size: 1rem;
+                    border-bottom: 1px solid var(--accent);
                 }
 
                 .delete-button{
-                    position: absolute;
-                    right: 0;
-                    bottom: 0;
-                    transform: translateX(-50%);
-                    padding: 15px;
-                    background-color: var(--secondary);
+                    align-self: center;
+                    margin-top: auto;
+                    text-align: center;
+                    padding: 5px;
+                    width: 150px;
+                    background-color: var(--primary);
                     text-decoration: none;
                     border-radius: 15px;
-                    color: red:
+                    color: var(--accent);
                 }
             }
         }
@@ -370,7 +411,6 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
     padding: 100px 75px;
 
     .cart-header{
@@ -388,30 +428,62 @@
     }
 
     .cart-content{
+        flex: 1;
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
         gap: 0px 10px;
-        width: 75%;
+        width: 100%;
+
+        a{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            align-self: start;
+            text-decoration: none;
+            color: var(--accent);
+            border-radius: 15px;
+            background-color: var(--primary);
+            width: max-content;
+            padding: 10px;
+            font: var(--plaintext);
+        }
+        img{
+            height: 15px;
+        }
 
         .cart-items{
             display: flex;
             flex-direction: column;
             padding: 15px 40px 0px 0px;
-            gap: 15px;
+            gap: 10px;
 
             .cartbooks{
                 display: flex;
                 flex-direction: row;
+                border: 1px solid var(--accent);
+                border-radius: 5px;
+                padding: 15px;
 
                 img{
-                    margin-right: 50px;
-                    width: 100px;
+                    margin-right: 25px;
+                    height: 100px;
+                    width: 60px;
                 }
 
                 .iteminfo{
                     display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
                     text{
                         font: var(--subsubhead);
+                        line-height: 1.5rem;
+                    }
+                    text.itemtitle{
+                        font: var(--subhead);
+                        font-size: 1rem;
+                        border-bottom: 1px solid var(--accent);
                     }
                 }
             }
@@ -419,12 +491,39 @@
         .cart-total{
             display: flex;
             flex-direction: column;
+            position: sticky;
+            justify-content: space-between;
             margin-top: 50px;
-            padding: 50px 15px;
+            top: 100px;
+            right: 0px;
+            padding: 25px 0px 0px 0px;
             height: 300px;
             width: 300px;
+            border-radius: 25px;
             border: 1px solid black;
             align-items: center;
+            background-color: var(--secondary);
+            filter: drop-shadow(5px 5px 10px var(--accent));
+
+            text.totalheader{
+                margin-bottom: 5px;
+                font: var(--subhead);
+                font-size: 1.5rem;
+                border-bottom: 1px solid black;
+            }
+
+            button{
+                cursor: pointer;
+                font: var(--plaintext);
+                font-size: .9rem;
+                align-self: center;
+                border-radius: 25px;
+                border-color: transparent;
+                background-color: var(--primary);
+                color: var(--accent);
+                padding: 15px;
+                width: 200px;
+            }
         }
     }
 }

@@ -6,10 +6,11 @@
 {% endblock general-css %}
 
 {% block content %}
-  <h1>User Registration</h1>
+  <div class="register">
+      <h2>User Registration</h2>
     <form action="" method="post">
       <table>
-         {{ form.as_table }}
+         {{ form.as_p }}
           <tr>
              <td>
                  <input type="submit" value="Submit">
@@ -19,4 +20,5 @@
       <input type="hidden" name="next" value="{{ next }}" />
       {% csrf_token %}
      </form>
+  </div>
 {% endblock content %}
