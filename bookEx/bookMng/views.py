@@ -152,9 +152,14 @@ def search_books(request):
     form = BookSearchForm(request.GET or None)
     results = Book.objects.all()
 
+
     if form.is_valid() and form.cleaned_data['query']:
         query = form.cleaned_data['query']
         results = results.filter(name__icontains=query)
+
+
+    for b in results:
+        b.pic_path = b.picture.url[14:]
 
     return render(request,
     'bookMng/search_results.html',
