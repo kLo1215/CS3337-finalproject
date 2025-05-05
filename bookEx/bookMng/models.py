@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
-from .models import Book
+#from .models import Book
 
 # Create your models here.
 
