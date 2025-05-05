@@ -35,25 +35,40 @@
             <img class="left" src="https://images.unsplash.com/photo-1517673132405-a56a62b18caf?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
          </div>
          <div class="section-text">
+            <text class="head">Welcome to the Book Exchange System!</text>
+            <text>Discover a place where book lovers connect.
+               This site is your go-to hub for finding, sharing,
+               and talking about books with others who care just as
+               much as you do. Whether you're looking to clear space
+               on your shelf or find your next great read, you're in
+               the right place. Want to know more about who we are?
+               Head over to our [About Us] page—or better yet, join
+               the community and start connecting today!</text>
+            <div class="section-buttons">
+               <a href="{% url 'about_us' %}">About Us</a>
+               <a href="{% url 'register' %}">Join the Community</a>
+            </div>
+         </div>
 
-         </div>
-         <div class="section-buttons">
-            <button>Post A Book</button>
-            <button>Hit the Nae Nae</button>
-            <button>Something Something!</button>
-            <button>Pluh?</button>
-         </div>
       </div>
       <div class="section2">
          <div class="section-image">
             <img class="right" src="https://images.unsplash.com/photo-1523273448803-25ba19c5faa1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
          </div>
-         <div class="section-text"></div>
-         <div class="section-buttons">
-            <button>Post A Book</button>
-            <button>Hit the Nae Nae</button>
-            <button>Something Something!</button>
-            <button>Pluh?</button>
+         <div class="section-text">
+            <text class="head">Post. Browse. Read. Repeat.</text>
+            <text>We make it easy to share your books with others
+               and explore what’s waiting for you. List a book
+               for exchange or sale in just a few clicks. Not
+               sure what you're looking for? Use the browse or
+               search options to explore thousands of titles posted
+               by fellow readers. Just tap the buttons below to dive
+               in—your next favorite book might be one click away.</text>
+            <div class="section-buttons">
+               <a href="{% url 'about_us' %}">Browse our collection</a>
+               <a href="{% url 'search_books' %}">Search a book</a>
+               <a href="{% url 'about_us' %}">Share your books</a>
+            </div>
          </div>
       </div>
    </div>

@@ -31,6 +31,9 @@
             </div>
             <div class="login">
                 {% if user.is_authenticated %}
+                    <a href="{% url 'view_cart' %}" class="cart-button">
+                    {{ user.username }}'s Cart
+                    <img src="https://cdn-icons-png.flaticon.com/512/2838/2838895.png" class="icon"></a>
                     <form action="{% url 'logout' %}?next=/" method="post">
                         <button class="logout-button">
                         Logout

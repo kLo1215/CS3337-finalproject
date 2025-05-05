@@ -125,50 +125,70 @@ main{
         display: flex;
         flex-direction: column;
         width: 100%;
-        gap: 75px 0px;
+        gap: 100px 0px;
+        align-items: center;
+        justify-content: center;
 
-        .section1{
+
+        .section1 {
             align-self: flex-start;
             display: flex;
             flex-direction: row;
-            align-items: flex-start;
+            align-items: center;
 
-            padding: 25px;
-            width: 90%;
+            width: 85%;
             gap: 35px;
-
-            border-radius: 10px;
-    }
+        }
 
         }
-        .section2{
+        .section2 {
             align-self: flex-end;
             display: flex;
             flex-direction: row-reverse;
-            align-items: flex-start;
-            padding: 25px;
+            align-items: center;
             width: 90%;
             gap: 35px;
+        }
+    }
+.section-image{
+    img{
+        height: 300px;
+        border-radius: 25px;
+    }
+    img.right{
+        filter: drop-shadow(10px 10px 10px var(--primary));
+    }
+    img.left{
+        filter: drop-shadow(-10px 10px 10px var(--primary));
+    }
+}
+.section-text{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 15px;
+    text-align: left;
+    gap: 10px;
 
-            border-radius: 10px;
+    text.head{
+        text-align: center;
+        font: var(--subhead);
+        text-wrap: balance;
+        font-size: 1.5rem;
+        line-height: 2;
+    }
+    .section-buttons{
+        display: flex;
+        justify-content: center;
+        padding: 15px;
+        gap: 0px 10px;
+        a{
+            color: var(--text);
+            font: var(--plaintext);
+            background-color: var(--primary);
+            padding: 15px;
+            border-radius: 15px;
+            text-decoration: none;
         }
     }
-    .section-image{
-        img{
-            height: 300px;
-            border-radius: 25px;
-        }
-        img.right{
-            filter: drop-shadow(10px 10px 10px var(--primary));
-        }
-        img.left{
-            filter: drop-shadow(-10px 10px 10px var(--primary));
-        }
-    }
-    .section-text{
-
-        text.head{
-            line-height: 3;
-        }
-    }
-    .section-buttons{}
+}

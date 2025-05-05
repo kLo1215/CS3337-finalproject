@@ -1,26 +1,48 @@
 {% extends "base.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Exchange System</title>
-    <link rel="stylesheet" href="{% static 'styles/general.css' %}" type="text/css">
-</head>
-<body>
-    {% block content %}
-       <h1>About Us</h1>
-       <h2>Who We Are</h2>
-       <p>
-         BookEx was created by Group 4 from CS 3337 as a final project. Each member was responsible for their own feature.
-       </p>
-       <br><h2>A Few Things You Can Do On BookEx</h2>
-       <p>
-           Search for books by title, author, or keyword.<br>
-           Rate and review books you have read.<br>
-           Upload your own books to share with others.<br>
-       </p>
-    {% endblock content %}
-</body>
+
+
+{% block content %}
+   <h1>About Us</h1>
+   <br><h2>Who We Are</h2>
+   <p>
+     BookEx was created by Group 4 from CS 3337 as a final project.
+       <table>
+         <tr>
+             <th>Name</th>
+             <th>Feature</th>
+         </tr>
+         <tr>
+             <td>Oscar Herrera</td>
+             <td>Search Book</td>
+         </tr>
+         <tr>
+             <td>Krystal Lo</td>
+             <td>About Us</td>
+         </tr>
+         <tr>
+             <td>Jennifer Lias</td>
+             <td>Rate Book</td>
+         </tr>
+         <tr>
+             <td>Yi Jin</td>
+             <td>Shopping Cart</td>
+         </tr>
+         <tr>
+             <td>Michael Hareu</td>
+             <td>Comments</td>
+         </tr>
+         <tr>
+             <td>Ryan Garcia</td>
+             <td>Webpage Formatting</td>
+         </tr>
+       </table>
+   </p>
+   <br><h2>A Few Things You Can Do On BookEx</h2>
+   <p>
+       Search for books by title, author, or keyword.<br>
+       Rate and review books you have read.<br>
+       Upload your own books to share with others.<br>
+   </p>
+{% endblock content %}

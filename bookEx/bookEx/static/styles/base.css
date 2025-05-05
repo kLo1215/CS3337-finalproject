@@ -24,18 +24,17 @@ html, body {
 
 }
 * { /* universal selector */
-    box-sizing: border-box; /* container sizing includes padding/border */
+    /* container sizing includes padding/border */
+    box-sizing: border-box;
 }
-
 
 /* base content (header and footer) */
 .header{
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    padding: 8px 75px;
+    padding: 8px 25px;
     background-color: var(--secondary);
-    position: sticky;
     filter: drop-shadow(0px 5px 30px var(--accent));
     z-index: 10;
 
@@ -89,8 +88,10 @@ html, body {
     }
     .login{
         justify-self: end;
-        display: inline-block;
+        display: flex;
+        flex-direction: row;
         align-items: center;
+        gap: 10px;
 
         a {
             text-decoration: none;
@@ -108,7 +109,7 @@ html, body {
             align-items: center;
             padding: 10px;
             gap: 8px;
-            font: var(--subsubhead);
+            font: var(--plaintext);
             border: 1px solid black;
             border-radius: 25px;
             background-color: transparent;
@@ -119,7 +120,18 @@ html, body {
             align-items: center;
             padding: 10px;
             gap: 8px;
-            font: var(--subsubhead);
+            font: var(--plaintext);
+            border: 1px solid black;
+            border-radius: 25px;
+            background-color: transparent;
+        }
+        .cart-button{
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            gap: 8px;
+            font: var(--plaintext);
             border: 1px solid black;
             border-radius: 25px;
             background-color: transparent;
@@ -144,7 +156,7 @@ main {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     background-color: var(--secondary);
-    padding: 10px 75px;
+    padding: 10px 25px;
     filter: drop-shadow(0px -5px 30px var(--accent));
 
     /* utility */
@@ -168,7 +180,7 @@ main {
             align-items: center;
         }
         img{
-            height: 75px;
+            height: 65px;
         }
         text{
             font: var(--subsubhead);

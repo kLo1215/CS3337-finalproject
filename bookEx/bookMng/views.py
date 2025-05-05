@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404, redirect
 from .models import Book, Rating
+from .models import Comment
+from .forms import CommentForm
 # Create your views here.
 
 from .models import MainMenu
@@ -79,7 +81,16 @@ def book_detail(request, book_id):
         percentage = (positive_ratings / total_ratings) * 100
     else:
         percentage = 0  # If no ratings, set percentage to 0
-        
+
+    # Comment section handling
+    comment_form = CommentForm(request.POST or None)
+    if request.method == 'POST' and comment_form.is_valid() and request.user.is_authenticated:
+        content = comment_form.cleaned_data['content']
+        Comment.objects.create(book=book, user=request.user, content=content)
+        return redirect('book_detail', book_id=book.id)    
+
+    comments = Comment.objects.filter(book=book)
+
     return render(request,
                   'bookMng/book_detail.html',
                   {
@@ -87,7 +98,9 @@ def book_detail(request, book_id):
                       'book': book,
                       'total_ratings': total_ratings,
                       'positive_ratings': positive_ratings,
-                      'percentage': percentage
+                      'percentage': percentage,
+                      'comment_form': comment_form,
+                      'comments': comments
                   })
 
 def book_delete(request, book_id):
