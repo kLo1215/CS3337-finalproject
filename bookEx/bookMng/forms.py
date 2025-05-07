@@ -14,10 +14,8 @@ class BookForm(ModelForm):
             'picture',
         ]
 
-
 class BookSearchForm(forms.Form):
     query = forms.CharField(label='Search books', max_length=100, required=False)
-
 
 class RatingForm(forms.ModelForm):
     class Meta:
@@ -29,5 +27,5 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ['content']
         widgets = {
-            'content': forms.Textarea(attrs={'rows': 2, 'placeholder': 'Leave a comment...'}),
+            'content': forms.Textarea(attrs={'placeholder': 'Leave a comment...'}),
         }

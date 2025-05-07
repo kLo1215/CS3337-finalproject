@@ -6,19 +6,20 @@
 {% endblock general-css %}
 
 {% block content %}
-  <div class="register">
-      <h2>User Registration</h2>
-    <form action="" method="post">
-      <table>
-         {{ form.as_p }}
-          <tr>
-             <td>
-                 <input type="submit" value="Submit">
-             </td>
-          </tr>
-      </table>
-      <input type="hidden" name="next" value="{{ next }}" />
-      {% csrf_token %}
-     </form>
-  </div>
+<div class="register">
+    <form class="formpage" action="" method="post">
+        <text class="head">Register User</text>
+        <text>Name: </text>
+        {{ form.username }}
+        <text>Password: </text>
+        {{ form.password1 }}
+        <text>Confirm Password: </text>
+        {{ form.password2 }}
+        <button type="submit">Create Account</button>
+        <input type="hidden" name="next" value="{{ next }}" />
+        {% csrf_token %}
+        <text class="redirect">Already a member? Login <a href="{% url 'login' %}">here.</a></text>
+
+    </form>
+</div>
 {% endblock content %}

@@ -1,28 +1,116 @@
+form.formpage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    margin-top: 50px;
+    width: 35%;
+    border: 1px solid black;
+    padding: 25px;
+    border-radius: 15px;
+
+    text.head{
+        display: flex;
+        flex-direction: column;
+        margin-left: 0px;
+        text-align: center;
+        font: var(--head);
+        font-size: 1.9rem;
+        border-bottom: 2px solid var(--accent);
+        margin-bottom: 15px;
+    }
+    text.redirect{
+        margin-top: 15px;
+        margin-left: 0px;
+        text-align: center;
+    }
+    text{
+        margin-left: 30px;
+        margin-bottom: 0;
+        width: 100%;
+        font: var(--subsubhead);
+        font-size: 1.2rem;
+    }
+
+    input{
+        border-color: transparent;
+        width: 100%;
+        padding: 15px;
+        background-color: var(--secondary);
+        border-radius: 15px;
+        margin-bottom: 10px;
+    }
+
+    input:focus{
+        outline: none;
+    }
+
+    button{
+        margin-top: 10px;
+        cursor: pointer;
+        width: 100%;
+        padding: 10px;
+        border-radius: 25px;
+        border-color: transparent;
+        color: var(--accent);
+        background-color: var(--primary);
+        font: var(--plaintext);
+        font-size: 1rem;
+    }
+}
+
+
 .userlogin{
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 100px 75px;
     width: 100%;
+    justify-content: center;
+
 }
 .register{
     flex: 1;
-    padding: 100 75px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 75px;
+    width: 100%;
+    justify-content: center;
 }
 .postBook{
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0px 0px;
-    padding: 75px 50px;
+    padding: 100px 75px;
+    width: 100%;
+    justify-content: center;
+
+    .posthead{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 0px 0px 5px 0px;
+        border-bottom: 2px solid var(--accent);
+
+        text.title{
+            font: var(--head);
+        }
+        text.plaintext{
+            font: var(--plaintext);
+        }
+    }
 }
+
+
 .aboutus{
     flex: 1;
     display: flex;
     flex-direction: column;
     padding: 100px 75px;
 }
-
-/* ^fuckass forms */
 
 .viewBook{
     flex: 1;
@@ -85,18 +173,19 @@
         }
     }
     .booksection{
-        width: 60%;
+        width: 55%;
         display: flex;
         flex-direction: column;
+        position: relative;
         padding: 0px 0px 0px 75px;
         gap: 50px 0px;
 
         .book-info{
-            width: 100%;
-            display: flex;
             flex: 1;
+            display: flex;
             flex-direction: column;
             align-self: start;
+            justify-content: space-evenly;
 
             .title{
                 font: var(--head);
@@ -106,43 +195,62 @@
             }
         }
         .commentsection{
-            width: 100%;
+            width: 65%;
             display: flex;
             flex-direction: column;
-            padding: 10px;
             form{
                 margin: 0;
             }
             .submitcomment{
                 display: flex;
                 flex-direction: column;
-                padding: 15px 0px;
                 border-bottom: 2px solid var(--accent);
 
                 text{
-                    margin-top: 25px;
-                }
-                img{
-                    height: 25px;
+                    padding-bottom: 5px;
                 }
 
-                button{
-                    cursor: pointer;
-                    background-color: var(--primary);
-                    border-radius: 15px;
-                    padding: 15px;
-                }
+                .entercomment{
+                    position: relative;
+                    display: flex;
+                    align-items: flex-end;
 
-                textarea{
-                    resize: none;
-                    border-radius: 15px;
-                    padding: 10px;
+                    button{
+                        position: absolute;
+                        top: 1px;
+                        right: 0px;
+                        border-color: transparent;
+                        cursor: pointer;
+                        background-color: var(--primary);
+                        border-radius: 15px;
+                        padding: 10px;
+                        height: 50px;
+                        background-color: var(--primary);
+                    }
+                    textarea{
+                        height: 50px;
+                        background-color: var(--secondary);
+                        border-color: transparent;
+                        resize: none;
+                        border-radius: 15px;
+                        width: 100%;
+                        padding: 15px;
+                        margin-bottom: 25px;
+                    }
+                    textarea:focus{
+                        outline: none;
+                    }
+                    img{
+                        height: 25px;
+                    }
                 }
             }
             .bookcomments{
                 display: flex;
                 flex-direction: column;
-                padding: 10px 15px;
+                align-items: flex-start;
+                padding: 10px 0px;
+                gap: 10px;
 
                 text{
                     font: var(--plaintext);
@@ -151,14 +259,31 @@
                 }
                 .comment{
                     display: flex;
-                    flex-direction: column;                        border-color: var(--accent);
-                    border-color: var(--accent);
+                    flex-direction: column;
+                    border-radius: 15px;
                     padding: 10px 15px;
+                    background-color: var(--secondary);
+
+                    button{
+                        margin-bottom: 3px;
+                        border-color: transparent;
+                        background-color: var(--primary);
+                        cursor: pointer;
+                        border-radius: 5px;
+                        padding: 5px;
+                    }
 
                     text.commenter{
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
                         font: var(--subsubhead);
+                        border-bottom: 1px solid var(--accent);
                     }
                     text.commenttext{
+                        padding: 5px;
+                        height: max-content;
                         font: var(--plaintext);
                     }
                 }
@@ -177,10 +302,8 @@
 
     .browsing-text{
         width: 100%;
-        padding: 0px 0px 25px 0px;
+        padding: 0px 0px 5px 0px;
         border-bottom: 2px solid var(--accent);
-        width: 100%;
-        text-align: flex-start;
 
         text{
             font: var(--subsubhead);
@@ -192,7 +315,7 @@
         grid-template-columns: repeat(auto-fit, minmax(200px, auto));
         justify-content: center;
         width: 100%;
-        padding-top: 50px;
+        padding-top: 25px;
 
         .book{
             display: flex;
@@ -211,8 +334,7 @@
                 width: 100%;
             }
             text{
-                font: var(--head);
-                font-size: 1rem;
+                font: var(--plaintext);
             }
             .toCart{
                 cursor: pointer;
@@ -324,9 +446,8 @@
                 padding: 5px;
                 width: 100%;
                 border-radius: 5px;
-                background-color: var(--primary);
                 color: var(--accent);
-                font: var(--plaintext)
+                font: var(--plaintext);
             }
             .covers{
                 width: 100%;
@@ -342,10 +463,13 @@
         display: flex;
         flex-direction: column;
         border-bottom: 2px solid var(--accent);
-        padding-bottom: 25px;
+        padding-bottom: 5px;
 
         text.head{
             font: var(--head);
+        }
+        text.plaintext{
+            font: var(--plaintext);
         }
     }
 
@@ -431,60 +555,81 @@
         flex: 1;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
-        gap: 0px 10px;
+        gap: 0px 5px;
         width: 100%;
+        justify-content: space-between;
+        padding: 0px 50px;
 
-        a{
+        .emptycart{
+            flex: 1;
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-top: 10px;
-            align-self: start;
-            text-decoration: none;
-            color: var(--accent);
-            border-radius: 15px;
-            background-color: var(--primary);
-            width: max-content;
-            padding: 10px;
-            font: var(--plaintext);
-        }
-        img{
-            height: 15px;
+            justify-content: center;
+
+            text{
+                font: var(--subsubhead);
+                font-size: 1.5rem;
+            }
         }
 
         .cart-items{
             display: flex;
             flex-direction: column;
-            padding: 15px 40px 0px 0px;
-            gap: 10px;
+            padding: 15px 0px;
+            width: 65%;
 
-            .cartbooks{
-                display: flex;
-                flex-direction: row;
-                border: 1px solid var(--accent);
+            .detailheader{
+                margin: 15px 0px 10px 0px;
+                height: max-content;
+                text-align: center;
+                display: grid;
+                grid-template-columns: repeat(6, 1fr);
                 border-radius: 5px;
+                background-color: var(--secondary);
                 padding: 15px;
+                filter: drop-shadow(0px 4px 5px var(--accent));
+            }
+            .cartbooks{
+                display: grid;
+                grid-template-columns: repeat(6, 1fr);
+                padding: 5px;
+                text-align: center;
+                text-wrap: balance;
+                align-items: center;
 
-                img{
-                    margin-right: 25px;
-                    height: 100px;
-                    width: 60px;
+                + .cartbooks{
+                    border-top: 1px solid var(--accent);
                 }
 
-                .iteminfo{
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    text{
-                        font: var(--subsubhead);
-                        line-height: 1.5rem;
-                    }
-                    text.itemtitle{
-                        font: var(--subhead);
-                        font-size: 1rem;
-                        border-bottom: 1px solid var(--accent);
-                    }
+                img{
+                    display: block;
+                    margin: 0 auto;
+                    height: 110px;
+                    width: 70px;
+                }
+                form{
+                    margin: 0;
+                }
+                button{
+                    cursor: pointer;
+                    padding: 5px;
+                    color: var(--accent);
+                    background-color: var(--primary);
+                    border-color: transparent;
+                    border-radius: 10px;
+                }
+                button img{
+                    margin: 0;
+                    height: 10px;
+                    width: 10px;
+                }
+
+                .quantitymodifiers{
+                    display: grid;
+                    grid-template-columns: repeat(3, auto);
+                    align-items: center;
+                    justify-content: center;
+                    gap: 5px;
                 }
             }
         }
@@ -495,9 +640,9 @@
             justify-content: space-between;
             margin-top: 50px;
             top: 100px;
-            right: 0px;
-            padding: 25px 0px 0px 0px;
-            height: 300px;
+            left: 100px;
+            padding: 25px 25px;
+            height: 250px;
             width: 300px;
             border-radius: 25px;
             border: 1px solid black;
@@ -512,17 +657,25 @@
                 border-bottom: 1px solid black;
             }
 
-            button{
-                cursor: pointer;
-                font: var(--plaintext);
-                font-size: .9rem;
-                align-self: center;
-                border-radius: 25px;
-                border-color: transparent;
-                background-color: var(--primary);
-                color: var(--accent);
-                padding: 15px;
-                width: 200px;
+            .button-div{
+                display: grid;
+                gap: 5px;
+
+                form{
+                    margin: 0;
+                }
+                button{
+                    cursor: pointer;
+                    font: var(--plaintext);
+                    font-size: .9rem;
+                    align-self: center;
+                    border-radius: 25px;
+                    border-color: transparent;
+                    background-color: var(--primary);
+                    color: var(--accent);
+                    padding: 10px;
+                    width: 200px;
+                }
             }
         }
     }

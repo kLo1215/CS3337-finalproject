@@ -6,25 +6,17 @@
 {% endblock general-css %}
 
 {% block content %}
-    <div class="userlogin">
-        <div class="loginform">
-            <text>Welcome Back!</text>
-        <form action="{% url 'login' %}" method="post">
-            <table>
-            {{ form.as_table }}
-            <tr>
-            <td>
-            <input type="submit" value="login">
-            </td>
-            </tr>
-            </table>
-            <p>
-            To register <a href="{% url 'register' %}">Click here.</a>
-            </p>
-
-            <input type="hidden" name="next" value="{{ next }}" />
-            {% csrf_token %}
-            </form>
-        </div>
-    </div>
+<div class="userlogin">
+    <form class="formpage" action="{% url 'login' %}" method="post">
+        <text class="head">Welcome Back!</text>
+        <text>Username: </text>
+        {{ form.username }}
+        <text>Password: </text>
+        {{ form.password }}
+        <input type="hidden" name="next" value="{{ next|default:'/' }}" />
+        {% csrf_token %}
+        <button type="submit">Login</button>
+        <text class="redirect">New to our community? Register <a href="{% url 'register' %}">here.</a></text>
+    </form>
+</div>
 {% endblock content %}
