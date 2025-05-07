@@ -28,7 +28,7 @@ def index(request):
                       'item_list': MainMenu.objects.all()
                   })
 
-
+@login_required(login_url='/login')
 def postbook(request):
     submitted = False
     if request.method == 'POST':
