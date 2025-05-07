@@ -6,43 +6,49 @@
 {% endblock general-css %}
 
 {% block content %}
-   <div class="aboutus">
-       <h1>About Us</h1>
-       <h2>Who We Are</h2>
-     BookEx was created by Group 4 from CS 3337 as a final project.
-       <table>
-         <tr>
-             <th>Name</th>
-             <th>Feature</th>
-         </tr>
-         <tr>
-             <td>Oscar Herrera</td>
-             <td>Search Book</td>
-         </tr>
-         <tr>
-             <td>Krystal Lo</td>
-             <td>About Us</td>
-         </tr>
-         <tr>
-             <td>Jennifer Lias</td>
-             <td>Rate Book</td>
-         </tr>
-         <tr>
-             <td>Yi Jin</td>
-             <td>Shopping Cart</td>
-         </tr>
-         <tr>
-             <td>Michael Hareu</td>
-             <td>Comments</td>
-         </tr>
-         <tr>
-             <td>Ryan Garcia</td>
-             <td>Webpage Formatting</td>
-         </tr>
-       </table>
-    <h2>A Few Things You Can Do On BookEx</h2>
-       Search for books by title, author, or keyword.<br>
-       Rate and review books you have read.<br>
-       Upload your own books to share with others.<br>
-   </div>
+<div class="aboutus">
+    <div class="auimg">
+        <img src="https://images.unsplash.com/photo-1473755504818-b72b6dfdc226?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+    </div>
+    <div class="auheader">
+        <text>About Us</text>
+    </div>
+    <div class="aucontent">
+        <div class="ausection">
+            <text class="subhead">Who We Are:</text>
+            <text class="text">BookEx was created by Group 4 from CS 3337 as a final project.</text>
+            <div class="list">
+                <div class="members">
+                    <text class="lhead">Member</text>
+                    <text>Oscar Herrera</text>
+                    <text>Krystal Lo</text>
+                    <text>Jennifer Lias</text>
+                    <text>Yi Jin</text>
+                    <text>Michael Hareu</text>
+                    <text>Ryan Garcia</text>
+                </div>
+                <div class="features">
+                    <text class="lhead">Feature</text>
+                    <text>Search a Book</text>
+                    <text>About Us</text>
+                    <text>Rate Book</text>
+                    <text>Shopping Cart</text>
+                    <text>Comments</text>
+                    <text>Webpage Formatting</text>
+                </div>
+            </div>
+        </div>
+        <div class="ausection">
+            <text class="subhead">Features and Services:</text>
+            <div class="services">
+                <text class="text">Search for books by title, author, or keyword.</text>
+                <text>Discover your next great read with our easy-to-use search—find exactly what you're looking for quickly.</text>
+                <text class="text">Rate and review books you have read.</text>
+                <text>Share your thoughts and see what others are saying—your voice helps shape the community.</text>
+                <text class="text">Upload your own books to share with others.</text>
+                <text>Give your books a second life and help fellow readers uncover hidden gems.</text>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}

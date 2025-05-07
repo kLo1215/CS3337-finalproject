@@ -7,27 +7,33 @@
 
 {% block content %}
 <div class="postBook">
-  {% if submitted %}
-      <text>Book Posted Successfully!</text>
-  {% else %}
-    <form class="formpage" action="" enctype="multipart/form-data" method="post" novalidate>
-        <text class="head">Post a Book:</text>
-        {% if user.is_authenticated %}
-            <text class="plaintext">See all the books you've shared with our community <a href="mybooks">here.</a></text>
-        {% else %}
-            <text class="plaintext"><a href="mybooks">Log in</a> to see what you've shared with our community.</text>
-        {% endif %}
-        <text>Title: </text>
-        {{ form.name }}
-        <text>Website: </text>
-        {{ form.web }}
-        <text>Price: </text>
-        {{ form.price }}
-        <text>Cover:  </text>
-        {{ form.picture }}
-        <button type="submit">Submit</button>
-      {% csrf_token %}
-     </form>
-  {% endif %}
+    {% if submitted %}
+        <div class="success">
+            <text class="successhead">Book Posted Successfully!</text>
+            <text class="successplain">To view your books, click <a href="{% url 'mybooks' %}">here.</a></text>
+            <text class="successplain">To post another book, click <a href="{% url 'postbook' %}">here.</a></text>
+        </div>
+    {% else %}
+        <form class="formpage" action="" enctype="multipart/form-data" method="post" novalidate>
+            <div class="posthead">
+                <text class="posth">Post a Book:</text>
+                {% if user.is_authenticated %}
+                <text class="plaintext">See all the books you've shared with our community <a href="mybooks">here.</a></text>
+                {% else %}
+                <text class="plaintext"><a href="mybooks">Log in</a> to see what you've shared with our community.</text>
+                {% endif %}
+            </div>
+            <text>Title: </text>
+            {{ form.name }}
+            <text>Website: </text>
+            {{ form.web }}
+            <text>Price: </text>
+            {{ form.price }}
+            <text>Cover:  </text>
+            {{ form.picture }}
+            {% csrf_token %}
+            <button type="submit">Submit</button>
+        </form>
+    {% endif %}
 </div>
 {% endblock content %}

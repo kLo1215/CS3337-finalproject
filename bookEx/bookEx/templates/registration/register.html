@@ -7,6 +7,12 @@
 
 {% block content %}
 <div class="register">
+    {% if submitted %}
+    <div class="success">
+        <text class="successhead">Registration Successful!</text>
+        <text class="successplain">Login <a href="{% url 'login' %}">here.</a></text>
+    </div>
+    {% else %}
     <form class="formpage" action="" method="post">
         <text class="head">Register User</text>
         <text>Name: </text>
@@ -19,7 +25,7 @@
         <input type="hidden" name="next" value="{{ next }}" />
         {% csrf_token %}
         <text class="redirect">Already a member? Login <a href="{% url 'login' %}">here.</a></text>
-
     </form>
+    {% endif %}
 </div>
 {% endblock content %}

@@ -24,10 +24,10 @@
             </div>
             <div class="navigation">
                 <a href="{% url 'index' %}">Home</a>
-                <a href="{% url 'mybooks' %}">My Books</a>
+                <a href="{% url 'about_us' %}">About Us</a>
                 <a href="{% url 'displaybooks' %}">Browse</a>
-                <a href="{% url 'search_books' %}">Search</a>
-                <a href="{% url 'postbook' %}">Post a Book</a>
+                <a href="{% url 'mybooks' %}">My Books</a>
+                <a href="{% url 'postbook' %}">Upload Book</a>
             </div>
             <div class="login">
                 {% if user.is_authenticated %}
@@ -64,19 +64,19 @@
             <div class="foothead">
                 <text>Information</text>
                 <div class="links">
-                    <a href="{% url 'about_us' %}">About Us</a>
                     <a href="{% url 'login' %}">Login</a>
+                    <a href="{% url 'view_cart' %}">Your Cart</a>
                     <a href="{% url 'register' %}">Join Our Community</a>
-                    <a href="{% url 'view_cart' %}">View Cart</a>
+                    <a href="{% url 'mybooks' %}">My Books</a>
                 </div>
             </div>
             <div class="foothead">
                 <text>Navigation</text>
                 <div class="links">
                     <a href="{% url 'index' %}">Home</a>
-                    <a href="{% url 'displaybooks' %}">Browse</a>
+                    <a href="{% url 'about_us' %}">About Us</a>
                     <a href="{% url 'search_books' %}">Search</a>
-                    <a href="{% url 'postbook' %}">Post A Book</a>
+                    <a href="{% url 'postbook' %}">Post a Book</a>
                 </div>
             </div>
         </div>

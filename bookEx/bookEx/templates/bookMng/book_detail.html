@@ -23,57 +23,55 @@
                 <button class="addtoCart" type="submit">Add to Cart: ${{ book.price }}</button>
                 </form>
             {% else %}
-            <p><a href="{% url 'login' %}?next={{ request.path }}">Log in</a> to rate or purchase this book</p>
+                <p><a href="{% url 'login' %}?next={{ request.path }}">Log in</a> to rate or purchase this book</p>
             {% endif %}
-
         </div>
     </div>
     <div class="booksection">
         <div class="book-info">
-        <text class="title">{{ book.name }}</text>
-        {% if total_ratings > 0 %}
-            <text class="totalRating">{{ positive_ratings }} of {{ total_ratings }} users liked this book ({{ percentage|floatformat:0 }}%)</text>
-        {% else %}
-            <text class="totalRating">No ratings yet.</text>
-        {% endif %}
-        <text>Shared by {{ book.username.username|default:"Anonymous" }} on {{ book.publishdate }}</text>
-        <text>Visit book website: <a href="{{ book.web }}">{{ book.web }}</a></text>
-    </div>
-    <div class="commentsection">
-        <div class="submitcomment">
-            {% if user.is_authenticated %}
-            <form method="post">
-                <div class="entercomment">
-                    {% csrf_token %}
-                    {{ comment_form.content }}
-                    <button type="submit"><img src="https://cdn-icons-png.flaticon.com/512/9256/9256383.png"></button>
-                </div>
-            </form>
-            <text>See what others are saying about this book:</text>
+            <text class="title">{{ book.name }}</text>
+            {% if total_ratings > 0 %}
+                <text class="totalRating">{{ positive_ratings }} of {{ total_ratings }} users liked this book ({{ percentage|floatformat:0 }}%)</text>
             {% else %}
-            <text><a href="{% url 'login' %}?next={{ request.path }}">Log in</a> to add a comment.</text>
+                <text class="totalRating">No ratings yet.</text>
             {% endif %}
+            <text>Shared by {{ book.username.username|default:"Anonymous" }} on {{ book.publishdate }}</text>
+            <text>Visit book website: <a href="{{ book.web }}">{{ book.web }}</a></text>
         </div>
-        <div class="bookcomments">
-            {% if comments %}
-                {% for comment in comments %}
-                   <div class="comment">
-                        <text class="commenter">{{ comment.user.username }} says:
-                        {% if user == comment.user %}
-                        <form action="{% url 'delete_comment' comment.id %}" method="post" style="display:inline;">
+        <div class="commentsection">
+            <div class="submitcomment">
+                {% if user.is_authenticated %}
+                    <form method="post">
+                        <div class="entercomment">
                             {% csrf_token %}
-                            <button type="submit">Delete</button>
-                        </form>
-                        {% endif %}</text>
-                        <text class="commenttext">{{ comment.content }}</text>
-                   </div>
-                {% endfor %}
-            {% else %}
-            <text class="commenttext">No comments yet. Be the first to comment!</text>
-            {% endif %}
+                            {{ comment_form.content }}
+                            <button type="submit"><img src="https://cdn-icons-png.flaticon.com/512/9256/9256383.png"></button>
+                        </div>
+                    </form>
+                    <text>See what others are saying about this book:</text>
+                {% else %}
+                    <text><a href="{% url 'login' %}?next={{ request.path }}">Log in</a> to add a comment.</text>
+                {% endif %}
+            </div>
+            <div class="bookcomments">
+                {% if comments %}
+                    {% for comment in comments %}
+                        <div class="comment">
+                            <text class="commenter">{{ comment.user.username }} says:
+                            {% if user == comment.user %}
+                                <form action="{% url 'delete_comment' comment.id %}" method="post" style="display:inline;">
+                                    {% csrf_token %}
+                                    <button type="submit">Delete</button>
+                                </form>
+                            {% endif %}</text>
+                            <text class="commenttext">{{ comment.content }}</text>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <text class="commenttext">No comments yet. Be the first to comment!</text>
+                {% endif %}
+            </div>
         </div>
-    </div>
-
     </div>
 </div>
 {% endblock content %}

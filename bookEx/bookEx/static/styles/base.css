@@ -6,10 +6,15 @@
     --secondary: #CDD0DD;
     --accent: #3A0405;
     --head: 2.2rem "Georgia", serif;
-    --subhead: 1.8rem "Helvetica", sans-serif;
+    --subhead: 1.5rem "Helvetica", sans-serif;
     --subsubhead: 1rem "Times New Roman", sans-serif;
     --plaintext: .8rem "Arial", sans-serif;
 }
+
+html{
+    overflow-x: hidden;
+}
+
 html, body {
     margin: 0;
     padding: 0;

@@ -129,7 +129,6 @@ main{
         align-items: center;
         justify-content: center;
 
-
         .section1 {
             align-self: flex-start;
             display: flex;
@@ -138,8 +137,6 @@ main{
 
             width: 85%;
             gap: 35px;
-        }
-
         }
         .section2 {
             align-self: flex-end;
@@ -183,8 +180,8 @@ main{
         padding: 15px;
         gap: 0px 10px;
         a{
-            color: var(--text);
-            font: var(--plaintext);
+            color: var(--accent);
+            font: var(--subsubhead);
             background-color: var(--primary);
             padding: 15px;
             border-radius: 15px;

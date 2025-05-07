@@ -14,8 +14,8 @@
             <text>Want to help us expand our collection? Post your books
                 <a href="{% url 'search_books' %}">here!</a>
             </text>
-
         </div>
+
         <div class="bookgallery">
             {% for book in books %}
                 <div class="book">
@@ -23,7 +23,7 @@
                     <a href="book_detail/{{ book.id }}"><img class="covers" src="{% static book.pic_path %}"/></a>
                     <form action="{% url 'add_to_cart' book.id %}" method="post">
                         {% csrf_token %}
-                        <button class="toCart" type="submit">Add to Cart: ${{ book.price }}</button>
+                        <button class="toCart" type="submit">Purchase: ${{ book.price }}</button>
                     </form>
                 </div>
             {% endfor %}

@@ -1,25 +1,16 @@
-from django.http import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404, redirect
-from .models import Book, Rating
 from .models import Comment
 from .forms import CommentForm
-# Create your views here.
-
 from .models import MainMenu
 from .forms import BookForm, BookSearchForm
 from .models import Cart, CartItem
 from .models import Book
 from .models import Rating
-
 from django.http import HttpResponseRedirect
-
-
 from django.views.generic.edit import CreateView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse_lazy
-
 
 def index(request):
     return render(request,
@@ -113,11 +104,7 @@ def book_delete(request, book_id):
     book = Book.objects.get(id=book_id)
     book.delete()
 
-    return render(request,
-                  'bookMng/book_delete.html',
-                  {
-                      'item_list': MainMenu.objects.all(),
-                  })
+    return redirect('mybooks')
 
 def rate_book(request, book_id, is_positive):
     book = get_object_or_404(Book, id=book_id)
@@ -136,11 +123,13 @@ def rate_book(request, book_id, is_positive):
 class Register(CreateView):
     template_name = 'registration/register.html'
     form_class = UserCreationForm
-    success_url = reverse_lazy('register-success')
 
     def form_valid(self, form):
         form.save()
-        return HttpResponseRedirect(self.success_url)
+        return render(self.request, self.template_name, {
+            'form': self.form_class(),  # clear form
+            'submitted': True
+        })
 
 @login_required(login_url='/login')
 def mybooks(request):
@@ -255,7 +244,14 @@ def checkout(request):
 
     # Clear cart items after "payment"
     cart.items.all().delete()
+    cart_items = cart.items.all()
+    total_quantity = 0
+    cart_total = 0.0
 
-    return render(request, 'bookMng/checkout.html', {
+    return render(request, 'bookMng/cart.html', {
         'item_list': MainMenu.objects.all(),
+        'cart_items': cart_items,
+        'cart_total': cart_total,
+        'total_quantity': total_quantity,
+        'submitted': True,
     })
